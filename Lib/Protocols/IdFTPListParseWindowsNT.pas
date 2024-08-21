@@ -16,6 +16,9 @@
   $Log$
 }
 {
+  Rev 1.12    8/21/2024 23:33 AWabik
+  Fix memory leaks in ParseListing
+  
   Rev 1.11    2/16/2005 7:26:52 AM  JPMugaas
   Should handle Microsoft IIS on Windows XP Professional if the
   FtpDirBrowseShowLongDate metadata is enabled.  That causes digit years to be
@@ -415,10 +418,10 @@ begin
         LItem := MakeNewItem(ADir);
         LItem.Data := AListing[i];
         Result := ParseLine(LItem, LPathSpec);
-        if not Result then begin
+        //if not Result then begin
           FreeAndNil(LItem);
-          Exit;
-        end
+        //  Exit;
+        //end
       end;
     end;
   end;
